@@ -28,7 +28,8 @@ body {
 }
 .hero-subtitle {
   margin: 0 0 22px;
-  max-width: 850px;
+  max-width: 1400px;
+  width: 90%;
   font-size: 1.05rem;
   opacity: 0.95;
 }
