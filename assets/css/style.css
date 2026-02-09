@@ -133,3 +133,93 @@ h2 {
     border: 1px solid #eee;
   }
 }
+
+/* TEAM SECTION */
+.team-section {
+  margin-bottom: 50px;
+}
+
+.team-section h3 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.team-grid {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.team-card {
+  background: #fafafa;
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+  transition: box-shadow 0.2s ease;
+}
+
+.team-card:hover {
+  box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+}
+
+/* Ensure mentor card matches student card size */
+.mentor-grid .team-card {
+    width: 260px; /* same visual width as grid minmax(220px) with padding */
+  }  
+
+.team-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.role {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.team-icons {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.team-icons .icon {
+  width: 26px;
+  height: 26px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.team-icons .icon:hover {
+  opacity: 1;
+}
+
+/* Mentor centered */
+.mentor-grid {
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+  }  
+
+/* Center text for Mentor & Students headings */
+.center-text {
+    text-align: center;
+  }
+  
+  /* Center sections and grids */
+  .team-section.center {
+    text-align: center;
+  }
+  
+  /* Ensure mentor card is centered */
+  .mentor-grid {
+    justify-content: center;
+  }
+  
