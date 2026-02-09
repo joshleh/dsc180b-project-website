@@ -187,12 +187,14 @@ h2 {
   }  
 
 .team-photo {
-  width: 120px;
-  height: 120px;
-  border-radius: 999px;
-  object-fit: cover;
-  margin-bottom: 12px;
-}
+    width: 120px;
+    height: 120px;
+    border-radius: 999px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 12px;
+  }
+  
 
 .role {
   margin-top: 4px;
@@ -267,9 +269,69 @@ h2 {
     opacity: 1;
     visibility: visible;
   }
-  
-/* TEMP: give sections height so scrolling triggers active states */
-.content section {
-    min-height: 70vh;
+
+/* ---------------------------------------------
+   CONTENT TYPOGRAPHY + SPACING UPGRADE
+   --------------------------------------------- */
+
+   .prose {
+    max-width: 850px;
+    line-height: 1.65;
+    font-size: 1.05rem;
   }
   
+  .prose section {
+    padding: 40px 0 70px;
+  }
+  
+  .prose h2 {
+    margin-bottom: 18px;
+    font-size: 2.15rem;
+    letter-spacing: -0.02em;
+    font-weight: 750;
+    color: #222;
+  }
+  
+  .prose h3 {
+    margin-top: 32px;
+    margin-bottom: 14px;
+    font-size: 1.45rem;
+    font-weight: 700;
+  }
+  
+  .prose p {
+    margin: 12px 0 18px;
+    color: #333;
+    max-width: 800px;
+  }
+  
+  .prose ul, .prose ol {
+    margin: 14px 0 20px 20px;
+    line-height: 1.6;
+  }
+  
+  .prose li {
+    margin-bottom: 6px;
+  }
+  
+  .prose img {
+    max-width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin: 24px 0;
+  }
+  
+  .prose section + section {
+    margin-top: 40px;
+  }
+  
+  @media (max-width: 700px) {
+    .prose {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  
+    .prose h2 {
+      font-size: 1.75rem;
+    }
+  }  
