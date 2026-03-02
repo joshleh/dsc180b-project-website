@@ -424,3 +424,11 @@ h2 {
   color: #555;
   margin-top: 8px;
 }
+
+/* Mobile: make it a 1-column stack */
+@media (max-width: 700px) {
+  .img-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
