@@ -337,3 +337,19 @@ h2 {
       font-size: 1.75rem;
     }
   }  
+
+  .figure img {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+  }
+
+  .img-caption {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #555;
+    text-align: center;
+    margin-top: -10px;   /* pulls caption closer to image */
+    margin-bottom: 20px;
+  }
