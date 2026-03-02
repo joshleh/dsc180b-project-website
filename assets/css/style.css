@@ -111,6 +111,19 @@ h2 {
   letter-spacing: -0.02em;
 }
 
+/* Desktop: show the active bullet dot */
+.nav-link.active::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #111;
+  margin-right: 8px;
+  vertical-align: middle;
+  font-weight: 800;
+}
+
 /* Mobile: sidebar becomes top nav */
 @media (max-width: 900px) {
   .layout {
@@ -135,23 +148,10 @@ h2 {
     background: #fff;
     border: 1px solid #eee;
   }
-  /* Active section highlight in sidebar */
-  .nav-link.active {
-    background: #dde3ea;
-    font-weight: 800;
-  }
   
   .nav-link.active::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background: #111;
-    margin-right: 8px;
-    vertical-align: middle;
+    content: none;   /* removes the dot on mobile */
   }
-  
 }
 
 /* TEAM SECTION */

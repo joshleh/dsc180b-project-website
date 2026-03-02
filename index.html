@@ -333,20 +333,20 @@
       // Highlight on scroll (most accurate)
       const observer = new IntersectionObserver(
         (entries) => {
-          // Find the entry most visible
           const visible = entries
             .filter(e => e.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-  
+            // section whose top is closest to the top of the viewport
+            .sort((a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top)[0];
+
           if (visible && visible.target && visible.target.id) {
             setActive(visible.target.id);
           }
         },
         {
           root: null,
-          // "Activate" a section when it hits roughly the upper-middle of the screen
-          rootMargin: "-25% 0px -60% 0px",
-          threshold: [0.1, 0.2, 0.3, 0.4, 0.5]
+          // activate when the section’s top is around 25% from the top
+          rootMargin: "-25% 0px -65% 0px",
+          threshold: [0]
         }
       );
   
