@@ -368,7 +368,14 @@ h2 {
   }
 
   @media (max-width: 700px) {
+    .hero-actions-row {
+      flex-direction: column;      /* keep them stacked nicely */
+      align-items: center;
+      gap: 14px;                   /* add spacing between buttons and logos */
+    }
+  
     .hero-logos {
+      margin-top: 6px;             /* extra breathing room */
       justify-content: center;
     }
   }
