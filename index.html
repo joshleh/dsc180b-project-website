@@ -62,9 +62,9 @@
               <h2>What We Built</h2>
               <p>To explore how explainability can improve trust in medical AI, we built a multimodal system that analyzes both <b>chest X-ray images</b> and <b>radiology report text</b> while providing transparent explanations for each model’s predictions. Our approach combines two components: a convolutional neural network (CNN) for imaging, and a fine-tuned large language model (LLM) for clinical text.</p>
 
-              <h3>Imaging Model (VGG19 & ResNet50)</h3>
-              <p>We trained two CNN architectures—<b>VGG19</b> and <b>ResNet50</b>—to predict a continuous biomarker value (BNPP) directly from grayscale chest X-rays. Following our poster’s model design, we replaced each network’s final classification layers with a <b>single linear output</b> for regression.</p>
-              <img src="assets/img/diagrams/cnn_dev_diagram.png" alt="CNN (VGG19 & ResNet50) Training Pipeline">
+              <h3>Imaging Model (VGG16 & ResNet50)</h3>
+              <p>We trained two CNN architectures—<b>VGG16</b> and <b>ResNet50</b>—to predict a continuous biomarker value (BNPP) directly from grayscale chest X-rays. Following our poster’s model design, we replaced each network’s final classification layers with a <b>single linear output</b> for regression.</p>
+              <img src="assets/img/diagrams/cnn_dev_diagram.png" alt="CNN (VGG16 & ResNet50) Training Pipeline">
               <p>These models allow us to study how different image features influence biomarker-related predictions, which is clinically relevant for assessing pulmonary edema severity.</p>
 
               <h3>Text Model (MediPhi + LoRA)</h3>
@@ -89,14 +89,14 @@
               <h2>Results</h2>
               <p>Our results evaluate how both the CNN and LLM models make decisions, and whether their internal reasoning aligns with clinically meaningful features. By analyzing image regions, text tokens, and embedding relationships, we uncover patterns that help explain each model’s predictions.</p>
 
-              <h3>CNN Explainability Findings (VGG19 & ResNet50)</h3>
+              <h3>CNN Explainability Findings (VGG16 & ResNet50)</h3>
               <h4>Image Ablation</h4>
               <p>When we systematically masked different regions of the X-ray, both CNNs showed the <b>largest drop in performance</b> when the central chest areas were removed. In contrast, masking the peripheral borders caused <b>minimal change</b> in prediction accuracy. This suggests that both models rely primarily on <b>clinically relevant lung and cardiac regions</b>, rather than learning artifacts from the edges of the image.</p>
 
               <h4>Grad-CAM Attention Maps</h4>
               <p>Grad-CAM visualizations revealed clear differences between the two CNN architectures:</p>
               <ul>
-                <li><b>VGG19</b> produced <b>broad, diffuse activation</b> across the chest, including the lungs and cardiac silhouette.</li>
+                <li><b>VGG16</b> produced <b>broad, diffuse activation</b> across the chest, including the lungs and cardiac silhouette.</li>
                 <li><b>ResNet50</b> showed <b>more consistent and concentrated attention</b>, especially around the heart and areas associated with pulmonary congestion.</li>
               </ul>
               <p>These patterns match clinical expectations—pulmonary edema often manifests through perihilar haziness and cardiac-related changes—indicating that both models are focusing on medically meaningful regions.</p>
@@ -123,7 +123,7 @@
               <p>Across both imaging and text modalities:</p>
               <ul>
                 <li>The CNNs rely on <b>core clinical regions</b> linked to pulmonary edema</li>
-                <li>ResNet50 demonstrates <b>more anatomically precise focus</b> than VGG19</li>
+                <li>ResNet50 demonstrates <b>more anatomically precise focus</b> than VGG16</li>
                 <li>The LLM captures <b>clinically realistic linguistic patterns</b></li>
                 <li>Embedding analysis confirms that the model learns <b>meaningful semantic structure</b> rather than random associations</li>
               </ul>
@@ -137,7 +137,7 @@
         
             <section id="conclusion">
               <h2>Conclusion</h2>
-              <p>Our findings show that explainability methods provide clear insight into how both imaging and text models make decisions about pulmonary edema. On the imaging side, CNN attention maps and ablation analyses consistently highlighted <b>cardiac and perihilar lung regions</b>, which are clinically central to edema assessment. ResNet50 demonstrated more localized and stable focus compared to VGG19, reflecting the benefits of deeper residual architectures.</p>
+              <p>Our findings show that explainability methods provide clear insight into how both imaging and text models make decisions about pulmonary edema. On the imaging side, CNN attention maps and ablation analyses consistently highlighted <b>cardiac and perihilar lung regions</b>, which are clinically central to edema assessment. ResNet50 demonstrated more localized and stable focus compared to VGG16, reflecting the benefits of deeper residual architectures.</p>
               <p>For the language model, LIME revealed that MediPhi relies heavily on <b>clinically meaningful descriptors</b>—such as markers of severity, progression, or negation—to arrive at its predictions. Cosine embedding analysis further showed that the model organizes medical terminology into coherent semantic clusters, suggesting that its internal representations mirror real clinical structure even without explicit supervision.</p>
               <p>Taken together, these multimodal results indicate that both the CNN and LLM components are not simply producing black-box outputs—they are leveraging features that align with established radiological reasoning. By making these internal patterns visible, our system advances the goal of <b>transparent, trustworthy medical AI</b> and demonstrates how explainability can support safer, more interpretable decision-making across imaging and text-based clinical workflows.</p>
             </section>
