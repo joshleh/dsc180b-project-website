@@ -177,26 +177,38 @@
                 
                 <h3>Impact</h3>
 
-                <p>Our multimodal system aims to support clinicians by providing faster, more consistent, and more interpretable assessments of pulmonary edema. Because both chest X-rays and radiology reports can be difficult to interpret — especially when visual signs are subtle — AI tools that highlight key image regions and summarize important clinical details may help reduce missed findings and speed up patient evaluation.</p>
-                <p>By combining imaging and text-based reasoning, this project moves toward AI systems that are not only accurate, but transparent and easier for clinicians to trust. Large-scale imputation of unlabeled reports may also help hospitals better understand trends in disease severity, improve triage decisions, and assist researchers studying pulmonary edema progression.</p>
+                <p>Our project demonstrates how explainability tools can make AI-driven medical predictions more transparent and clinically trustworthy. By analyzing both <b>chest X-ray models</b> and <b>radiology-report language models</b>, we show that:</p>
+                <ul>
+                  <li>CNNs tend to focus on <b>clinically meaningful regions</b>—such as the heart and perihilar lung areas—when generating edema-related predictions.</li>
+                  <li>The MediPhi LLM relies on <b>intuitive linguistic cues</b>, with severity classifications shaped by descriptors of progression, congestion, or negation.</li>
+                  <li>Embedding-space analyses reveal that the model organizes medical concepts into <b>coherent semantic clusters</b>, rather than depending on spurious correlations.</li>
+                </ul>
+                <p>Together, these findings highlight how multimodal explainability can help clinicians understand <i>why</i> a model made a particular prediction—an essential step toward real-world adoption of medical AI systems. By making model reasoning visible, such tools can help reduce missed findings, support more consistent triage decisions, and build trust in AI-assisted care.</p>
 
                 <h3>Future Work</h3>
 
-                <p>Although our Quarter 2 system shows promise, several directions could further improve real-world readiness:</p>
-
+                <p>Although our system shows meaningful progress toward interpretable medical AI, several avenues could further enhance performance and clinical readiness:</p>
                 <ul>
-                    <li><strong>Larger and more diverse training datasets:</strong> Expanding beyond a single-institution dataset would help the model generalize across different scanners, hospitals, and patient populations.</li>
-                
-                    <li><strong>Incorporating clinical metadata:</strong> Adding structured information such as vitals, lab values, and patient history could improve prediction accuracy and contextual reasoning.</li>
-                
-                    <li><strong>Stronger explainability tools:</strong> Future versions could include counterfactual explanations, similar-case retrieval, and uncertainty estimates to make model outputs even more transparent.</li>
-                
-                    <li><strong>Real-time clinical workflow integration:</strong> Incorporating the system into PACS or report-writing environments would allow clinicians to use the system during real-world decision-making.</li>
-                
-                    <li><strong>Prospective evaluation:</strong> Testing the system on new, incoming radiographs and reports is a key next step toward validating its clinical usefulness.</li>
-                
-                    <li><strong>Expanding to other thoracic findings:</strong> The same framework could be extended to detect conditions such as atelectasis or pleural effusions.</li>
-                  </ul>
+                  <li>counterfactual reasoning</li>
+                  <li>feature-perturbation sensitivity analyses</li>
+                  <li>cross-modal alignment methods to compare image and text explanations directly</li>
+                </ul>
+                <p>These additions would deepen our understanding of model behavior across both modalities.</p>
+
+                <h4>Expanded Explainability Techniques</h4>
+                <p>Building beyond Grad-CAM, LIME, and embedding analysis, future iterations could incorporate:</p>
+
+                <h4>Integration of Additional Clinical Labels</h4>
+                <p>Our current models focus on edema severity and BNPP prediction. Incorporating structured metadata—such as cardiac history, comorbidities, or radiologist assessments—could improve both predictive accuracy and contextual interpretability.</p>
+
+                <h4>Larger and More Diverse Datasets</h4>
+                <p>Training on data from multiple institutions, imaging devices, and reporting styles would help generalize the system and reduce model bias. This is especially important since edema appearance varies widely across patients and scanners.</p>
+
+                <h4>Prospective & Temporal Evaluation</h4>
+                <p>A key next step is testing the system on new, incoming radiographs and reports to validate whether explanations remain consistent outside the training distribution.</p>
+
+                <h4>Toward Real Clinical Integration</h4>
+                <p>Future work could explore how these explainability tools fit within radiology workflows—for example, using heatmaps or text highlights to support rapid triage or to flag ambiguous cases for closer review.</p>
             </section>
           </div>
 
