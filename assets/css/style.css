@@ -338,13 +338,6 @@ h2 {
     }
   }  
 
-  .figure img {
-    max-width: 100%;
-    width: 100%;
-    display: block;
-    border-radius: 10px;
-  }
-
   .img-caption {
     font-size: 0.9rem;
     font-style: italic;
@@ -352,4 +345,52 @@ h2 {
     text-align: center;
     margin-top: -10px;   /* pulls caption closer to image */
     margin-bottom: 20px;
+  }
+
+  .hero-logos {
+    margin-top: 26px;
+    display: flex;
+    gap: 22px;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .hero-logos img {
+    height: 48px;       
+    width: auto;
+    display: block;
+    opacity: 0.93;
+    transition: opacity 0.2s ease;
+  }
+  
+  .hero-logos img:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 700px) {
+    .hero-logos {
+      justify-content: center;
+    }
+  }
+
+  .hero-actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    flex-wrap: wrap; /* keeps it responsive */
+  }
+  
+  /* Ensures both sides stay aligned and don’t push the hero taller */
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .hero-logos {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-top: 0; /* remove excess spacing */
   }
