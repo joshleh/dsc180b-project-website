@@ -83,6 +83,48 @@
         
             <section id="results">
               <h2>Results</h2>
+              <p>Our results evaluate how both the CNN and LLM models make decisions, and whether their internal reasoning aligns with clinically meaningful features. By analyzing image regions, text tokens, and embedding relationships, we uncover patterns that help explain each model’s predictions.</p>
+
+              <h3>CNN Explainability Findings (VGG19 & ResNet50)</h3>
+              <h4>Image Ablation</h4>
+              <p>When we systematically masked different regions of the X-ray, both CNNs showed the <b>largest drop in performance</b> when the central chest areas were removed. In contrast, masking the peripheral borders caused <b>minimal change</b> in prediction accuracy. This suggests that both models rely primarily on <b>clinically relevant lung and cardiac regions</b>, rather than learning artifacts from the edges of the image.</p>
+
+              <h4>Grad-CAM Attention Maps</h4>
+              <p>Grad-CAM visualizations revealed clear differences between the two CNN architectures:</p>
+              <ul>
+                <li><b>VGG19</b> produced <b>broad, diffuse activation</b> across the chest, including the lungs and cardiac silhouette.</li>
+                <li><b>ResNet50</b> showed <b>more consistent and concentrated attention</b>, especially around the heart and areas associated with pulmonary congestion.</li>
+              </ul>
+              <p>These patterns match clinical expectations—pulmonary edema often manifests through perihilar haziness and cardiac-related changes—indicating that both models are focusing on medically meaningful regions.</p>
+
+              <h3>LLM Explainability Findings (MediPhi + LoRA)</h3>
+              <h4>Global LIME Token Importance</h4>
+              <p>LIME analysis of the fine-tuned MediPhi model shows that its predictions reflect <b>clinically interpretable linguistic structure</b>:</p>
+              <ul>
+                <li>Higher severity levels (moderate/severe) are driven by terms indicating <b>intensity, progression, congestion, or worsening conditions</b>.</li>
+                <li>Lower severity or absence classifications rely on expressions reflecting <b>stability, negation, or uncertainty</b>.</li>
+              </ul>
+              <p>This indicates that the model is not simply memorizing phrases, but is using medically meaningful descriptors consistent with radiology report conventions.</p>
+
+              <h4>Cosine Embedding Analysis</h4>
+              <p>The embedding similarity matrix shows that the LLM naturally organizes medical terms in a clinically meaningful way:</p>
+              <ul>
+                <li>Related edema-associated terms cluster near each other</li>
+                <li>Negation-related or “normal” descriptors shift in the opposite direction</li>
+                <li>The structure emerges <i>independently</i> of prediction-level attribution</li>
+              </ul>
+              <p>This suggests the LLM has learned a coherent semantic space that aligns with radiological language patterns.</p>
+
+              <h3>Overall Insights</h3>
+              <p>Across both imaging and text modalities:</p>
+              <ul>
+                <li>The CNNs rely on <b>core clinical regions</b> linked to pulmonary edema</li>
+                <li>ResNet50 demonstrates <b>more anatomically precise focus</b> than VGG19</li>
+                <li>The LLM captures <b>clinically realistic linguistic patterns</b></li>
+                <li>Embedding analysis confirms that the model learns <b>meaningful semantic structure</b> rather than random associations</li>
+              </ul>
+              <p>These results collectively show that the models are learning patterns that align with clinical reasoning, reducing the “black box” nature of their predictions and improving interpretability.</p>
+              
             </section>
 
             <section id="methods">
