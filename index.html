@@ -60,6 +60,25 @@
 
             <section id="what_we_built">
               <h2>What We Built</h2>
+              <p>To explore how explainability can improve trust in medical AI, we built a multimodal system that analyzes both <b>chest X-ray images</b> and <b>radiology report text</b> while providing transparent explanations for each model’s predictions. Our approach combines two components: a convolutional neural network (CNN) for imaging, and a fine-tuned large language model (LLM) for clinical text.</p>
+
+              <h3>Imaging Model (VGG19 & ResNet50)</h3>
+              <p>We trained two CNN architectures—<b>VGG19</b> and <b>ResNet50</b>—to predict a continuous biomarker value (BNPP) directly from grayscale chest X-rays. Following our poster’s model design, we replaced each network’s final classification layers with a <b>single linear output</b> for regression.</p>
+              <p>These models allow us to study how different image features influence biomarker-related predictions, which is clinically relevant for assessing pulmonary edema severity.</p>
+
+              <h3>Text Model (MediPhi + LoRA)</h3>
+              <p>For the textual component, we fine-tuned <b>Microsoft’s MediPhi</b>—a domain-specific medical LLM—using <b>Low-Rank Adaptation (LoRA)</b>. The model learns to classify edema severity into four structured categories: <b>absent</b>, <b>mild</b>, <b>moderate</b>, and <b>severe</b>. Only lightweight adapter layers were updated, while the base model remained frozen.</p>
+              <p>This setup enables the LLM to pick up clinically meaningful language patterns in radiology reports without needing full retraining.</p>
+
+              <h3>Explainability Across Both Modalities</h3>
+              <p>A central goal of this project is not only to generate predictions, but to <b>understand what drives them</b>. To do this, we applied several complementary explainability techniques:</p>
+              <ul>
+                <li><b>Grad-CAM</b> to visualize the specific chest regions most influential to CNN predictions</li>
+                <li><b>Image Ablation</b> to measure how masking different areas affects model performance</li>
+                <li><b>LIME</b> to identify which words or phrases contribute most to LLM severity classifications</li>
+                <li><b>Cosine Embedding Analysis</b> to examine how the LLM organizes clinical concepts in embedding space</li>
+              </ul>
+              <p>Together, these methods reveal whether the models rely on clinically meaningful features rather than irrelevant patterns—addressing the “black box” problem in a practical, interpretable way.</p>
             </section>
         
             <section id="methods">
