@@ -186,7 +186,138 @@
 
             <section id="methods">
               <h2>Methods 🔬</h2>
-              <p><i>WORK IN PROGRESS</i></p>
+              
+              <p>
+                To make pulmonary edema more interpretable, we designed our methodology around 
+                two complementary modalities: <b>medical imaging</b> and <b>clinical text</b>. The imaging
+                side uses convolutional neural networks (CNNs) to analyze chest X-rays, while the text side 
+                uses a fine-tuned medical large language model (LLM) to interpret radiology reports. Across 
+                both modalities, our goal was not only to generate predictions, but also to explain 
+                <i>what features the models relied on</i> and <i>why those predictions were made</i>.
+              </p>
+
+              <h3>Dataset</h3>
+              <p>
+                Our data came from an anonymized UC San Diego clinical dataset. The imaging portion 
+                consisted of approximately <b>30,000 chest X-ray scans</b> originally stored at 
+                <b>1024×1024 resolution</b>. Each image was paired with patient metadata and a 
+                <b>log-transformed N-terminal pro-B-type natriuretic peptide (BNPP)</b> biomarker value, 
+                which served as the regression target for the CNN models. In parallel, the dataset also 
+                included radiology reports, and a curated subset of roughly <b>2,000 labeled reports</b> 
+                contained structured annotations for pulmonary edema and related findings. This labeled 
+                subset was used for supervised language-model fine-tuning. 
+              </p>
+
+              <h3>Preprocessing</h3>
+              <p>
+                Because full-resolution chest X-rays are computationally expensive to train on, all images 
+                were downsampled from <b>1024×1024 to 256×256</b>, converted to grayscale, and normalized 
+                to the range <b>[0, 1]</b>. BNPP values were log-transformed and standardized using 
+                z-score normalization computed on the training set, then applied to validation and test data 
+                to avoid leakage. 
+              </p>
+              <p>
+                For the text pipeline, the labeled radiology reports were split into training, validation, 
+                and test sets. Reports were tokenized using the <b>MediPhi tokenizer</b>, which converts 
+                the report text into subword token IDs suitable for transformer-based fine-tuning. 
+              </p>
+
+              <h3>Imaging Model: CNN-Based BNPP Regression</h3>
+              <p>
+                We trained two convolutional neural networks—<b>VGG16</b> and <b>ResNet50</b>—to predict 
+                standardized BNPP values directly from chest X-rays. Both architectures were adapted for 
+                regression by replacing their final classification layers with a <b>single continuous output</b>. 
+                The models were trained using the <b>Adam optimizer</b> with <b>L1 loss (mean absolute error)</b>.
+              </p>
+              <p>
+                In the report, the CNN training setup uses a batch size of <b>16</b>, a learning rate of 
+                <b>1×10<sup>-5</sup></b>, and <b>50 epochs</b>, with evaluation based on
+                <b>Pearson correlation (r)</b> between predicted and true BNPP values on the held-out test set. 
+                The poster presents the same pipeline at a high level and emphasizes the use of pretrained 
+                VGG16 and ResNet50 backbones for biomarker prediction from chest radiographs.
+              </p>
+
+              <h3>Text Model: MediPhi Fine-Tuning with LoRA</h3>
+              <p>
+                For the language component, we fine-tuned <b>Microsoft's MediPhi</b>, a domain-specific 
+                medical LLM, using <b>Low-Rank Adaptation (LoRA)</b>. Rather than updating all model 
+                parameters, LoRA adds lightweight trainable adapter layers while keeping the base model 
+                weights frozen. This makes fine-tuning more efficient while preserving the model's medical
+                language knowledge.
+              </p>
+              <p>
+                The fine-tuned model was trained to classify pulmonary edema severity into four categories: 
+                <b>absent</b>, <b>mild</b>, <b>moderate</b>, and <b>severe</b>. After evaluation on a held-out 
+                test set, the model was also applied to a larger pool of unlabeled radiology reports to 
+                generate predicted edema labels, which were then used to stratify corresponding X-ray 
+                images for downstream explainability analysis.
+              </p>
+
+              <h3>Explainability for Chest X-rays</h3>
+              <p>
+                to understand how the CNNs made their predictions, we applied two complementary 
+                explainability methods: <b>Grad-CAM</b> and <b>image ablation</b>.
+              </p>
+
+              <h4>Grad-CAM</h4>
+              <p>
+                <b>Gradient-weighted Class Activation Mapping (Grad-CAM)</b> is a model-specific method that 
+                highlights the image regions most responsible for a model's output. We computed Grad-CAM 
+                with respect to each CNN's scalar BNPP prediction and examined multiple convolutional layers 
+                to observe how spatial attention changed from early to deep feature representations. The resulting 
+                activation maps were resized, normalized and overlaid on the original chest X-rays. 
+                We also compared Grad-CAM patterns across edema severity groups predicted by the LLM 
+                to see whether attention shifted across absent, mild, moderate, and severe cases. 
+              </p>
+
+              <h4>Image Ablation</h4>
+              <p>
+                We also used <b>image ablation</b>, a model-agnostic method that measures how important
+                different spatial regions are systematically masking them. For each 256×256 X-ray, 
+                a <b>16×16 occlusion patch</b> was moved across the image with a stride of 16 pixels. 
+                At each location, the patch was replaced with the image's mean pixel intensity, and the 
+                modified image was passed back through the CNN. We then measured how much performance 
+                changed when each region was removed, using changes in <b>Pearson correlation</b> on the
+                test set to generate spatial sensitivity heatmaps. 
+              </p>
+
+              <h3>Explainability for Radiology Reports</h3>
+              <p>
+                To interpret the LLM's predictions, we analyzed both <b>local token importance</b> and 
+                <b>semantic structure</b> within the model's learned embedding space. 
+              </p>
+
+              <h4>LIME</h4>
+              <p>
+                <b>LIME (Local Interpretable Model-Agnostic Explanations)</b> was used to explain the 
+                MediPhi model's four-class edema severity predictions. For a given report, LIME creates 
+                perturbed versions of the input text by masking or removing subsets of tokens, observes 
+                how the model's class probabilities change, and fits a simple local surrogate model around 
+                that prediction. The resulting coefficients indicate which tokens push the prediction toward 
+                or away from each severity class. By aggregating these local explanations across many reports, 
+                we obtained broader global token-importance patterns associated with absent, mild, 
+                moderate, and severe edema. 
+              </p>
+              
+              <h4>Cosine Embedding Analysis</h4>
+              <p>
+                To study how the LLM internally represents clinical language, we performed 
+                <b>cosine embedding analysis</b> on selected edema-related terms. Cosine similarity 
+                measures how closely two token embedding align in the model's latent space. By comparing 
+                clinically meaningful anchor terms—such as words associated with edema, congestion, 
+                or negation—we could examine whether the model grouped related concepts together and 
+                separated opposing concepts apart. Unlike LIME, which explains individual predictions, 
+                this method helps reveal the broader semantic organization learned by the model. 
+              </p>
+
+              <h3>Why This Multimodal Design Matters</h3>
+              <p>
+                Together, these methods let us examine both <b>what the models predict</b> and 
+                <b>how they arrive there</b>. The CNN pipeline provides spatial explanations over chest 
+                radiographs, while the LLM pipeline provides token-level and embedding-level explanations 
+                over radiology text. This multimodal design helps reduce the "black box" nature of medical AI 
+                by making model reasoning more visible, clinically interpretable and easier to evaluate.
+              </p>
             </section>
         
             <section id="conclusion">
