@@ -324,6 +324,15 @@
               <p>For the language model, LIME revealed that MediPhi relies heavily on <b>clinically meaningful descriptors</b>—such as markers of severity, progression, or negation—to arrive at its predictions. Cosine embedding analysis further showed that the model organizes medical terminology into coherent semantic clusters, suggesting that its internal representations mirror real clinical structure even without explicit supervision.</p>
               <p>Taken together, these multimodal results indicate that both the CNN and LLM components are not simply producing black-box outputs—they are leveraging features that align with established radiological reasoning. By making these internal patterns visible, our system advances the goal of <b>transparent, trustworthy medical AI</b> and demonstrates how explainability can support safer, more interpretable decision-making across imaging and text-based clinical workflows.</p>
               <p>It is important to note that this project focuses on analyzing <b>model interpretability</b> rather than building a deployable clinical diagnostic system. Our goal is not to replace clinical decision-making or integrate directly into hospital workflows. Instead, we aim to evaluate whether modern deep learning models rely on <b>clinically meaningful features</b> when predicting pulmonary edema severity, and to demonstrate how explainability techniques can make these patterns more transparent.</p>
+
+              <h3>Limitations</h3>
+
+              <p>While our models show clinically meaningful attention patterns, several limitations remain.</p>
+              <ul>
+                <li>The dataset originates from a single institution, which may limit generalizability across hospitals.</li>
+                <li>The LLM was fine-tuned on a relatively small labeled subset of reports (~2,000), which may affect robustness across diverse reporting styles.</li>
+                <li>Explainability methods such as Grad-CAM and LIME provide approximations of model reasoning and should not be interpreted as definitive causal explanations.</li>
+              </ul>
             </section>
 
             <section id="impact_future_work">
