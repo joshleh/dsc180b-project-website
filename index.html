@@ -90,13 +90,9 @@
                 <li><b>LIME</b> to identify which words or phrases contribute most to LLM severity classifications</li>
                 <li><b>Cosine Embedding Analysis</b> to examine how the LLM organizes clinical concepts in embedding space</li>
               </ul>
-              <img src="assets/img/diagrams/cnn_explainability.png" alt="CNN Interpretability Workflow">
-              <div class="img-caption">
-                Figure 3: CNN Interpretability Workflow
-              </div>
               <img src="assets/img/diagrams/llm_explainability.png" alt="LLM Interpretability Workflow">
               <div class="img-caption">
-                Figure 4: LLM Interpretability Workflow
+                Figure 3: LLM Interpretability Workflow
               </div>
               <p>Together, these methods reveal whether the models rely on clinically meaningful features rather than irrelevant patterns—addressing the “black box” problem in a practical, interpretable way.</p>
             </section>
@@ -111,7 +107,7 @@
               <img src="assets/img/results/ablation_comparison.png" alt="Ablation Comparison">
               <img src="assets/img/results/ablation_viz.png" alt="Ablation Visualization">
               <div class="img-caption">
-                Figure 5 & 6: Percentage drop in Pearson-R metric when
+                Figure 4 & 5: Percentage drop in Pearson-R metric when
                 ablating input image region for ResNet50 & VGG16
               </div>
 
@@ -123,7 +119,7 @@
               </ul>
               <img src="assets/img/results/group_gradcam_sev.png" alt="Grad-CAM">
               <div class="img-caption">
-                Figure 7: Grad-CAM Heatmaps for labeled edema severity. Highlighted areas indicate greater attention; red meaning the greatest attention.
+                Figure 6: Grad-CAM Heatmaps for labeled edema severity. Highlighted areas indicate greater attention; red meaning the greatest attention.
               </div>
 
               <p>These patterns match clinical expectations—pulmonary edema often manifests through perihilar haziness and cardiac-related changes—indicating that both models are focusing on medically meaningful regions.</p>
@@ -152,7 +148,7 @@
                 </div>
               </div>
               <div class="img-caption">
-                Figure 8-11: Global LIME token importance (mean signed weights) for edema severity classes. Positive weights push
+                Figure 7-10: Global LIME token importance (mean signed weights) for edema severity classes. Positive weights push
                 predictions toward the class; negative weights push away.
               </div>
 
@@ -167,7 +163,7 @@
 
               <img src="assets/img/results/cosine_embedding.png" alt="Cosine Embedding">
               <div class="img-caption">
-                Figure 12: Cosine similarity matrix of selected edema-related clinical terms
+                Figure 11: Cosine similarity matrix of selected edema-related clinical terms
                 extracted from radiology reports. Red indicates semantic alignment; blue
                 indicates opposition.
               </div>
