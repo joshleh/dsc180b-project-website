@@ -68,6 +68,13 @@
             <section id="what_we_built">
               <h2>What We Built 🛠️</h2>
               <p>To explore how explainability can improve trust in medical AI, we built a multimodal system that analyzes both <b>chest X-ray images</b> and <b>radiology report text</b> while providing transparent explanations for each model’s predictions. Our approach combines two components: a convolutional neural network (CNN) for imaging, and a fine-tuned large language model (LLM) for clinical text.</p>
+              
+              <h3>What Our Team Built vs. Reused</h3>
+                <ul>
+                  <li><b>Built / adapted by our team:</b> the overall multimodal pipeline, the BNPP regression setup for chest X-rays, the fine-tuning pipeline for edema severity classification, the explainability analysis workflow, the evaluation pipeline, and the website/poster/report materials used to communicate the project.</li>
+                  <li><b>Reused existing models and methods:</b> pretrained CNN backbones (VGG16 and ResNet50), Microsoft’s MediPhi language model, Low-Rank Adaptation (LoRA), Grad-CAM, LIME, and cosine-similarity analysis techniques.</li>
+                  <li><b>Built on prior research:</b> our project extends prior pulmonary-edema assessment work from the AiDA Lab by focusing more explicitly on interpretability across both imaging and text modalities.</li>
+                </ul>
 
               <h3>1) Imaging Model (VGG16 & ResNet50)</h3>
               <p>We trained two CNN architectures—<b>VGG16</b> and <b>ResNet50</b>—to predict a continuous biomarker value (BNPP) directly from grayscale chest X-rays. Following our poster’s model design, we replaced each network’s final classification layers with a <b>single linear output</b> for regression.</p>
