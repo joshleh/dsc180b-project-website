@@ -350,27 +350,29 @@
                 <h3>Future Work</h3>
 
                 <p>Although our system shows meaningful progress toward interpretable medical AI, several avenues could further enhance performance and clinical readiness:</p>
-                <ul>
-                  <li>Counterfactual experiments that test how predictions change when specific clinical features are altered</li>
-                  <li>Sensitivity analyses that evaluate how robust the models are to small input changes</li>
-                  <li>Methods that compare explanations from image models and text models directly</li>
-                </ul>
-                <p>These additions would deepen our understanding of model behavior across both modalities.</p>
+                
+                <ol>
+                  <li><b>Expanded Explainability Techniques</b></li>
+                  <p>Building beyond Grad-CAM, LIME (Local Interpretable Model-Agnostic Explanations), and embedding analysis, future iterations could incorporate:</p>
+                  <ul>
+                    <li>Counterfactual experiments that test how predictions change when specific clinical features are altered</li>
+                    <li>Sensitivity analyses that evaluate how robust the models are to small input changes</li>
+                    <li>Methods that compare explanations from image models and text models directly</li>
+                  </ul>
+                  <p>These additions would deepen our understanding of model behavior across both modalities.</p>
 
-                <h4>Expanded Explainability Techniques</h4>
-                <p>Building beyond Grad-CAM, LIME (Local Interpretable Model-Agnostic Explanations), and embedding analysis, future iterations could incorporate:</p>
+                  <li><b>Integration of Additional Clinical Labels</b></li>
+                  <p>Our current models focus on edema severity and BNPP prediction. Incorporating structured metadata—such as cardiac history, comorbidities, or radiologist assessments—could improve both predictive accuracy and contextual interpretability.</p>
 
-                <h4>Integration of Additional Clinical Labels</h4>
-                <p>Our current models focus on edema severity and BNPP prediction. Incorporating structured metadata—such as cardiac history, comorbidities, or radiologist assessments—could improve both predictive accuracy and contextual interpretability.</p>
+                  <li><b>Larger and More Diverse Datasets</b></li>
+                  <p>Training on data from multiple institutions, imaging devices, and reporting styles would help generalize the system and reduce model bias. This is especially important since edema appearance varies widely across patients and scanners.</p>
 
-                <h4>Larger and More Diverse Datasets</h4>
-                <p>Training on data from multiple institutions, imaging devices, and reporting styles would help generalize the system and reduce model bias. This is especially important since edema appearance varies widely across patients and scanners.</p>
+                  <li><b>Prospective & Temporal Evaluation</b></li>
+                  <p>A key next step is testing the system on new, incoming radiographs and reports to validate whether explanations remain consistent outside the training distribution.</p>
 
-                <h4>Prospective & Temporal Evaluation</h4>
-                <p>A key next step is testing the system on new, incoming radiographs and reports to validate whether explanations remain consistent outside the training distribution.</p>
-
-                <h4>Toward Real Clinical Integration</h4>
-                <p>Future work could explore how these explainability tools fit within radiology workflows—for example, using heatmaps or text highlights to support rapid triage or to flag ambiguous cases for closer review.</p>
+                  <li><b>Toward Real Clinical Integration</b></li>
+                  <p>Future work could explore how these explainability tools fit within radiology workflows—for example, using heatmaps or text highlights to support rapid triage or to flag ambiguous cases for closer review.</p>
+                </ol>
             </section>
           </div>
 
