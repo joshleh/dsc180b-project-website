@@ -69,7 +69,7 @@
               <h2>What We Built 🛠️</h2>
               <p>To explore how explainability can improve trust in medical AI, we built a multimodal system that analyzes both <b>chest X-ray images</b> and <b>radiology report text</b> while providing transparent explanations for each model’s predictions. Our approach combines two components: a convolutional neural network (CNN) for imaging, and a fine-tuned large language model (LLM) for clinical text.</p>
 
-              <h3>Imaging Model (VGG16 & ResNet50)</h3>
+              <h3>1) Imaging Model (VGG16 & ResNet50)</h3>
               <p>We trained two CNN architectures—<b>VGG16</b> and <b>ResNet50</b>—to predict a continuous biomarker value (BNPP) directly from grayscale chest X-rays. Following our poster’s model design, we replaced each network’s final classification layers with a <b>single linear output</b> for regression.</p>
               <img src="assets/img/diagrams/cnn_dev_diagram.png" alt="CNN (VGG16 & ResNet50) Training Pipeline">
               <div class="img-caption">
@@ -77,7 +77,7 @@
               </div>
               <p>These models allow us to study how different image features influence biomarker-related predictions, which is clinically relevant for assessing pulmonary edema severity.</p>
 
-              <h3>Text Model (MediPhi + LoRA)</h3>
+              <h3>2) Text Model (MediPhi + LoRA)</h3>
               <p>For the textual component, we fine-tuned <b>Microsoft’s MediPhi</b>—a domain-specific medical LLM—using <b>Low-Rank Adaptation (LoRA)</b>. The model learns to classify edema severity into four structured categories: <b>absent</b>, <b>mild</b>, <b>moderate</b>, and <b>severe</b>. Only lightweight adapter layers were updated, while the base model remained frozen.</p>
               <img src="assets/img/diagrams/llm_dev_diagram.png" alt="LLM (MedPhi) Fine-tuning">
               <div class="img-caption">
@@ -85,7 +85,7 @@
               </div>
               <p>This setup enables the LLM to pick up clinically meaningful language patterns in radiology reports without needing full retraining.</p>
 
-              <h3>Explainability Across Both Modalities</h3>
+              <h3>3) Explainability Across Both Modalities</h3>
               <p>A central goal of this project is not only to generate predictions, but to <b>understand what drives them</b>. To do this, we applied several complementary explainability techniques:</p>
               <ul>
                 <li><b>Grad-CAM</b> to visualize the specific chest regions most influential to CNN predictions</li>
@@ -104,7 +104,7 @@
               <h2>Results 📊</h2>
               <p>Our results evaluate how both the CNN and LLM models make decisions, and whether their internal reasoning aligns with clinically meaningful features. By analyzing image regions, text tokens, and embedding relationships, we uncover patterns that help explain each model’s predictions.</p>
 
-              <h3>CNN Explainability Findings (VGG16 & ResNet50)</h3>
+              <h3>1) CNN Explainability Findings (VGG16 & ResNet50)</h3>
               <h4>Image Ablation</h4>
               <p>When we systematically masked different regions of the X-ray, both CNNs showed the <b>largest drop in performance</b> when the central chest areas were removed. In contrast, masking the peripheral borders caused <b>minimal change</b> in prediction accuracy. This suggests that both models rely primarily on <b>clinically relevant lung and cardiac regions</b>, rather than learning artifacts from the edges of the image.</p>
               <img src="assets/img/results/ablation_comparison.png" alt="Ablation Comparison">
@@ -127,7 +127,7 @@
               <p>These patterns match clinical expectations—pulmonary edema often manifests through perihilar haziness and cardiac-related changes—indicating that both models are focusing on medically meaningful regions.</p>
               <p>In interpreting these results, attention maps should not be viewed as exact explanations of model reasoning. Instead, they provide an approximate indication of which anatomical regions influence predictions. Consistent attention around the heart and lung fields suggests the model is relying on clinically meaningful cues rather than image artifacts.</p>
 
-              <h3>LLM Explainability Findings (MediPhi + LoRA)</h3>
+              <h3>2) LLM Explainability Findings (MediPhi + LoRA)</h3>
               <h4>Global LIME (Local Interpretable Model-Agnostic Explanations) Token Importance</h4>
               <p>LIME analysis of the fine-tuned MediPhi model shows that its predictions reflect <b>clinically interpretable linguistic structure</b>:</p>
               <ul>
@@ -171,7 +171,7 @@
                 indicates opposition.
               </div>
 
-              <h3>Overall Insights</h3>
+              <h3>3) Overall Insights</h3>
               <p>Across both imaging and text modalities:</p>
               <ul>
                 <li>The CNNs rely on <b>core clinical regions</b> linked to pulmonary edema</li>
@@ -200,7 +200,7 @@
                 During early experimentation, we first trained CNN models without incorporating explainability analysis. However, this limited our ability to assess whether predictions relied on clinically meaningful features. We therefore incorporated Grad-CAM and ablation experiments to evaluate model attention patterns and better understand the reasoning behind predictions.
               </p>
 
-              <h3>Dataset</h3>
+              <h3>1) Dataset</h3>
               <p>
                 Our data came from an anonymized UC San Diego clinical dataset. The imaging portion 
                 consisted of approximately <b>30,000 chest X-ray scans</b> originally stored at 
@@ -214,7 +214,7 @@
                 
               </p>
 
-              <h3>Preprocessing</h3>
+              <h3>2) Preprocessing</h3>
               <p>
                 Because full-resolution chest X-rays are computationally expensive to train on, all images 
                 were downsampled from <b>1024×1024 to 256×256</b>, converted to grayscale, and normalized 
@@ -227,7 +227,7 @@
                 converts the report text into a format that the model can analyze.
               </p>
 
-              <h3>Imaging Model: CNN-Based BNPP Regression</h3>
+              <h3>3) Imaging Model: CNN-Based BNPP Regression</h3>
               <p>
                 We trained two convolutional neural networks—<b>VGG16</b> and <b>ResNet50</b>—to predict 
                 standardized BNPP values directly from chest X-rays. Both architectures were adapted for 
@@ -242,7 +242,7 @@
                 VGG16 and ResNet50 backbones for biomarker prediction from chest radiographs.
               </p>
 
-              <h3>Text Model: MediPhi Fine-Tuning with LoRA</h3>
+              <h3>4) Text Model: MediPhi Fine-Tuning with LoRA</h3>
               <p>
                 For the language component, we fine-tuned <b>Microsoft's MediPhi</b>, a domain-specific 
                 medical LLM, using <b>Low-Rank Adaptation (LoRA)</b>. Rather than updating all model 
@@ -258,7 +258,7 @@
                 images for downstream explainability analysis.
               </p>
 
-              <h3>Explainability for Chest X-rays</h3>
+              <h3>5) Explainability for Chest X-rays</h3>
               <p>
                 To understand how the CNNs made their predictions, we applied two complementary 
                 explainability methods: <b>Grad-CAM</b> and <b>image ablation</b>.
@@ -286,7 +286,7 @@
                 test set to generate spatial sensitivity heatmaps. 
               </p>
 
-              <h3>Explainability for Radiology Reports</h3>
+              <h3>6) Explainability for Radiology Reports</h3>
               <p>
                 To interpret the LLM's predictions, we analyzed both <b>local token importance</b> and 
                 <b>semantic structure</b> within the model's learned embedding space. 
