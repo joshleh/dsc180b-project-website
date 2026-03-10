@@ -78,17 +78,18 @@
               <h2>Why Pulmonary Edema Matters</h2>
               <p>Pulmonary edema is a life-threatening condition caused by fluid accumulation in the lungs, often linked to heart failure or other forms of cardiac dysfunction. Because symptoms can progress rapidly, <b>early diagnosis is important so that clinicians can treat the underlying cause of the fluid buildup</b>, such as heart failure or excess fluid in the body. Clinicians typically rely on chest X-rays and radiology reports to assess edema, but these indicators can be subtle, vary in appearance, and be interpreted differently across readers.</p>
               <p>This makes pulmonary edema a powerful case study for explainable medical AI. Even when modern models—such as CNNs or LLMs—perform well, their predictions remain difficult to interpret without dedicated explainability methods. To be clinically useful, these models must reveal <b>what visual regions</b> they focus on and <b>which linguistic cues</b> influence their decisions.</p>
-              <p>Our project explores how multimodal AI systems can support clinicians by analyzing both imaging and text while also providing <b>transparent explanations</b> of the features driving their predictions. The goal is not to replace clinical expertise, but to build tools that enhance consistency, accelerate triage, and ultimately improve patient safety in high-risk scenarios.</p>
+              <p>Our project explores how AI models analyzing both imaging and clinical text can support clinicians while also providing <b>transparent explanations</b>. The goal is not to replace clinical expertise, but to build tools that enhance consistency, accelerate triage, and ultimately improve patient safety in high-risk scenarios.</p>
               <p>The primary stakeholders for this system are <b>radiologists and clinicians who interpret chest X-rays</b>, as well as <b>medical AI researchers studying interpretable diagnostic models</b>. These users require tools that not only generate accurate predictions but also provide transparent explanations that help justify clinical decisions and build trust in AI-assisted workflows.</p>
             </section>
 
             <section id="what_we_built">
               <h2>What We Built 🛠️</h2>
-              <p>To explore how explainability can improve trust in medical AI, we built a multimodal system that analyzes both <b>chest X-ray images</b> and <b>radiology report text</b> while providing transparent explanations for each model’s predictions. Our approach combines two components: a convolutional neural network (CNN) for imaging, and a fine-tuned large language model (LLM) for clinical text.</p>
+              <p>To explore how explainability can improve trust in medical AI,  we built a system that analyzes both <b>chest X-ray images</b> and <b>radiology report text</b> while providing transparent explanations for each model’s predictions. Our approach combines two components: a convolutional neural network (CNN) for imaging, and a fine-tuned large language model (LLM) for clinical text.</p>
+              
               
               <h3>What Our Team Built vs. Reused</h3>
                 <ul>
-                  <li><b>Built / adapted by our team:</b> the overall multimodal pipeline, the BNPP regression setup for chest X-rays, the fine-tuning pipeline for edema severity classification, the explainability analysis workflow, the evaluation pipeline, and the website/poster/report materials used to communicate the project.</li>
+                  <li><b>Built / adapted by our team:</b> the overall imaging and text analysis pipelines, the BNPP regression setup for chest X-rays, the fine-tuning pipeline for edema severity classification, the explainability analysis workflow, the evaluation pipeline, and the website/poster/report materials used to communicate the project.</li>
                   <li><b>Reused existing models and methods:</b> pretrained CNN backbones (VGG16 and ResNet50), Microsoft’s MediPhi language model, Low-Rank Adaptation (LoRA), Grad-CAM, LIME, and cosine-similarity analysis techniques.</li>
                   <li><b>Built on prior research:</b> our project extends prior pulmonary-edema assessment work from the AiDA Lab by focusing more explicitly on interpretability across both imaging and text modalities.</li>
                 </ul>
@@ -376,7 +377,7 @@
                   <li>The MediPhi LLM relies on <b>intuitive linguistic cues</b>, with severity classifications shaped by descriptors of progression, congestion, or negation.</li>
                   <li>Embedding-space analyses reveal that the model organizes medical concepts into <b>coherent semantic clusters</b>, rather than depending on spurious correlations.</li>
                 </ul>
-                <p>Together, these findings highlight how multimodal explainability can help clinicians understand <i>why</i> a model made a particular prediction—an essential step toward real-world adoption of medical AI systems. By making model reasoning visible, such tools can help reduce missed findings, support more consistent triage decisions, and build trust in AI-assisted care.</p>
+                <p>Together, these findings highlight how explainability across imaging and clinical text models can help clinicians understand <i>why</i> a model made a particular prediction—an essential step toward real-world adoption of medical AI systems. By making model reasoning visible, such tools can help reduce missed findings, support more consistent triage decisions, and build trust in AI-assisted care.</p>
 
                 <h3>Future Work</h3>
 
