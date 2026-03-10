@@ -53,7 +53,22 @@
         <div class="prose">
             <section id="what">
               <h2>What is the "Black Box" in Medical AI?</h2>
-              <p>In medical AI, a <i>“black box”</i> refers to any model—such as a convolutional neural network (CNN) or large language model (LLM)—that makes predictions without clearly revealing how those predictions were formed. These models can analyze thousands of imaging features or textual cues that are invisible to human clinicians, yet offer no built-in explanation for why a decision was made.</p>
+              <p>
+                In medical AI, a <i>”black box”</i> refers to any model—such as a 
+                <b>convolutional neural network (CNN)</b> or a <b>large language model (LLM)</b>—
+                that makes predictions without clearly revealing how those predictions were formed. 
+                A CNN is a type of deep learning model designed to analyze images, making it useful 
+                for tasks like interpreting chest X-rays. An LLM is a model trained to understand 
+                and generate human language, allowing it to analyze medical text such as radiology 
+                reports. These models can analyze thousands of imaging features or textual cues that may 
+                be difficult for human clinicians to detect, yet they typically do not provide 
+                a clear explanation for <i>why</i> a particular prediction was made.
+              </p>
+              <p>
+                Our project examines this challenge in the context of pulmonary edema by studying 
+                how both image-based models (CNNs) and text-based models (LLMs) generate predictions 
+                and how explainability techniques can reveal the reasoning behind them.
+              </p>
               <p>This lack of transparency becomes a major barrier in clinical settings. Physicians must be able to justify diagnoses and treatment decisions, and opaque predictions make it difficult to assess whether a model is relying on <b>valid clinical evidence</b> or <b>spurious correlations</b>. Even highly accurate systems may go unused if clinicians cannot understand <i>what</i> the model is focusing on or <i>why</i> its output should be trusted.</p>
               <p>Because medical decisions carry real patient risk, explainability is not optional—it is essential. Understanding a model’s reasoning helps clinicians evaluate reliability, identify potential biases, and integrate AI tools safely into workflows. In our project, explainability serves as the foundation for analyzing how imaging and language models interpret features related to pulmonary edema.</p>
             </section>
