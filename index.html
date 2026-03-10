@@ -94,16 +94,22 @@
 
               <h3>3) Explainability Across Both Modalities</h3>
               <p>A central goal of this project is not only to generate predictions, but to <b>understand what drives them</b>. To do this, we applied several complementary explainability techniques:</p>
+              
+              <h4>CNN Explainability</h4>
               <ul>
                 <li><b>Grad-CAM</b> to visualize the specific chest regions most influential to CNN predictions</li>
                 <li><b>Image Ablation</b> to measure how masking different areas affects model performance</li>
-                <li><b>LIME (Local Interpretable Model-Agnostic Explanations)</b> to identify which words or phrases contribute most to LLM severity classifications</li>
-                <li><b>Cosine Embedding Analysis</b> to examine how the LLM organizes clinical concepts in embedding space</li>
               </ul>
               <img src="assets/img/diagrams/llm_explainability.png" alt="LLM Interpretability Workflow">
               <div class="img-caption">
                 Figure 3: LLM Interpretability Workflow
               </div>
+
+              <h4>LLM Explainability</h4>
+              <ul>
+                <li><b>LIME (Local Interpretable Model-Agnostic Explanations)</b> to identify which words or phrases contribute most to LLM severity classifications</li>
+                <li><b>Cosine Embedding Analysis</b> to examine how the LLM organizes clinical concepts in embedding space</li>
+              </ul>
               <p>Together, these methods reveal whether the models rely on clinically meaningful features rather than irrelevant patterns—addressing the “black box” problem in a practical, interpretable way.</p>
             </section>
         
