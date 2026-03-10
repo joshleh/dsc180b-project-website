@@ -432,3 +432,13 @@ h2 {
     gap: 18px;
   }
 }
+
+.references p {
+  padding-left: 2em;
+  text-indent: -2em;
+}
+
+.references {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
